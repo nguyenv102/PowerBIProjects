@@ -1,0 +1,126 @@
+table OrderDetails
+	lineageTag: fe68eea0-ab88-4bd3-b18c-b53f98d2eac3
+
+	refreshPolicy
+		policyType: basic
+		rollingWindowGranularity: year
+		rollingWindowPeriods: 1
+		incrementalGranularity: month
+		incrementalPeriods: 1
+		pollingExpression = let MaxOrderDate = List.Max(OrderDetails[OrderDate]), accountForNull = if MaxOrderDate = null then #datetime(1901, 01, 01, 00, 00, 00) else MaxOrderDate in accountForNull
+		sourceExpression =
+			let
+			    Source = Sql.Databases("LAPTOP-CQK47N3I\MIMOKI", [HierarchicalNavigation=true]),
+			    AdventureWorks2022 = Source{[Name="AdventureWorks2022"]}[Data],
+			    MySchema = AdventureWorks2022{[Schema="MySchema"]}[Data],
+			    OrderDetails1 = MySchema{[Name="OrderDetails"]}[Data],
+			    #"Filtered Rows" = Table.SelectRows(OrderDetails1, each [OrderDate] >= RangeStart and [OrderDate] < RangeEnd)
+			in
+			    #"Filtered Rows"
+
+	measure 'Total Order Quantity' =
+			
+			SUM ( OrderDetails[OrderQuantity] )
+		formatString: 0
+		lineageTag: d07cccb6-a0f4-471c-9a97-96026eacd259
+
+	column OrderDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b72912a8-3692-4113-bb52-35b76a51afc4
+		summarizeBy: none
+		sourceColumn: OrderDate
+
+		variation Variation
+			isDefault
+			relationship: aa55c7b8-50bd-4815-81c4-d5fd2165c615
+			defaultHierarchy: LocalDateTable_d975fb27-314e-4a23-8d12-73dbdbc1773c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column StockDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: aa3bce82-d5b7-4ce1-8ce9-e3e775128f6c
+		summarizeBy: none
+		sourceColumn: StockDate
+
+		variation Variation
+			isDefault
+			relationship: b853ba1c-f42a-4258-b55c-c98a50afd7ea
+			defaultHierarchy: LocalDateTable_946fbcd5-a688-4507-a646-86359688e4d7.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductKey
+		dataType: int64
+		formatString: 0
+		lineageTag: e564eaef-cb74-400c-82b3-18f9ab7ff022
+		summarizeBy: count
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 3ae4cb4b-fca5-46e5-903f-d2a7c14b57cb
+		summarizeBy: count
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column TerritoryKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 05a5b3a5-f846-42f1-88ee-33690195b1da
+		summarizeBy: count
+		sourceColumn: TerritoryKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderLineItem
+		dataType: int64
+		formatString: 0
+		lineageTag: d3eee15c-78ee-4885-a20e-78c1b8fbd033
+		summarizeBy: sum
+		sourceColumn: OrderLineItem
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderQuantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 7564f7d4-6854-4550-ab5b-d833561a2e1e
+		summarizeBy: sum
+		sourceColumn: OrderQuantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderID
+		dataType: int64
+		formatString: 0
+		lineageTag: e6fd2570-f112-444a-8fc5-36206065bdd3
+		summarizeBy: count
+		sourceColumn: OrderID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition OrderDetails = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Databases("LAPTOP-CQK47N3I\MIMOKI", [HierarchicalNavigation=true]),
+				    AdventureWorks2022 = Source{[Name="AdventureWorks2022"]}[Data],
+				    MySchema = AdventureWorks2022{[Schema="MySchema"]}[Data],
+				    OrderDetails1 = MySchema{[Name="OrderDetails"]}[Data],
+				    #"Filtered Rows" = Table.SelectRows(OrderDetails1, each [OrderDate] >= RangeStart and [OrderDate] < RangeEnd)
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_IsMQueryFoldable = True
+
