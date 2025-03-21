@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Test Incremental Refresh"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "c6c7e5d2-698e-4c9b-bf83-21808ba8c778"
+  }
+}
