@@ -10,9 +10,28 @@
     "tabOrder": 0
   },
   "visual": {
-    "visualType": "tableEx",
+    "visualType": "pivotTable",
     "query": {
       "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "OrderDetails"
+                    }
+                  },
+                  "Property": "OrderDate"
+                }
+              },
+              "queryRef": "OrderDetails.OrderDate",
+              "nativeQueryRef": "OrderDate Year",
+              "active": true
+            }
+          ]
+        },
         "Values": {
           "projections": [
             {
@@ -33,20 +52,6 @@
               },
               "queryRef": "Sum(OrderDetails.OrderQuantity)",
               "nativeQueryRef": "Sum of OrderQuantity"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "OrderDetails"
-                    }
-                  },
-                  "Property": "OrderDate"
-                }
-              },
-              "queryRef": "OrderDetails.OrderDate.Variation.Date Hierarchy.Year",
-              "nativeQueryRef": "OrderDate Year"
             }
           ]
         }
