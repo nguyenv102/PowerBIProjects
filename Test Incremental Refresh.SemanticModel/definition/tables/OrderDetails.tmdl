@@ -31,11 +31,6 @@ table OrderDetails
 		summarizeBy: none
 		sourceColumn: OrderDate
 
-		variation Variation
-			isDefault
-			relationship: aa55c7b8-50bd-4815-81c4-d5fd2165c615
-			defaultHierarchy: LocalDateTable_d975fb27-314e-4a23-8d12-73dbdbc1773c.'Date Hierarchy'
-
 		annotation SummarizationSetBy = Automatic
 
 	column StockDate
@@ -44,11 +39,6 @@ table OrderDetails
 		lineageTag: aa3bce82-d5b7-4ce1-8ce9-e3e775128f6c
 		summarizeBy: none
 		sourceColumn: StockDate
-
-		variation Variation
-			isDefault
-			relationship: b853ba1c-f42a-4258-b55c-c98a50afd7ea
-			defaultHierarchy: LocalDateTable_946fbcd5-a688-4507-a646-86359688e4d7.'Date Hierarchy'
 
 		annotation SummarizationSetBy = Automatic
 

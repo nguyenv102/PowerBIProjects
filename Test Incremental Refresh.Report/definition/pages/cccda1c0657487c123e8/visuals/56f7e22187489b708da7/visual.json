@@ -36,103 +36,17 @@
             },
             {
               "field": {
-                "HierarchyLevel": {
+                "Column": {
                   "Expression": {
-                    "Hierarchy": {
-                      "Expression": {
-                        "PropertyVariationSource": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "OrderDetails"
-                            }
-                          },
-                          "Name": "Variation",
-                          "Property": "OrderDate"
-                        }
-                      },
-                      "Hierarchy": "Date Hierarchy"
+                    "SourceRef": {
+                      "Entity": "OrderDetails"
                     }
                   },
-                  "Level": "Year"
+                  "Property": "OrderDate"
                 }
               },
               "queryRef": "OrderDetails.OrderDate.Variation.Date Hierarchy.Year",
               "nativeQueryRef": "OrderDate Year"
-            },
-            {
-              "field": {
-                "HierarchyLevel": {
-                  "Expression": {
-                    "Hierarchy": {
-                      "Expression": {
-                        "PropertyVariationSource": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "OrderDetails"
-                            }
-                          },
-                          "Name": "Variation",
-                          "Property": "OrderDate"
-                        }
-                      },
-                      "Hierarchy": "Date Hierarchy"
-                    }
-                  },
-                  "Level": "Quarter"
-                }
-              },
-              "queryRef": "OrderDetails.OrderDate.Variation.Date Hierarchy.Quarter",
-              "nativeQueryRef": "OrderDate Quarter"
-            },
-            {
-              "field": {
-                "HierarchyLevel": {
-                  "Expression": {
-                    "Hierarchy": {
-                      "Expression": {
-                        "PropertyVariationSource": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "OrderDetails"
-                            }
-                          },
-                          "Name": "Variation",
-                          "Property": "OrderDate"
-                        }
-                      },
-                      "Hierarchy": "Date Hierarchy"
-                    }
-                  },
-                  "Level": "Month"
-                }
-              },
-              "queryRef": "OrderDetails.OrderDate.Variation.Date Hierarchy.Month",
-              "nativeQueryRef": "OrderDate Month"
-            },
-            {
-              "field": {
-                "HierarchyLevel": {
-                  "Expression": {
-                    "Hierarchy": {
-                      "Expression": {
-                        "PropertyVariationSource": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "OrderDetails"
-                            }
-                          },
-                          "Name": "Variation",
-                          "Property": "OrderDate"
-                        }
-                      },
-                      "Hierarchy": "Date Hierarchy"
-                    }
-                  },
-                  "Level": "Day"
-                }
-              },
-              "queryRef": "OrderDetails.OrderDate.Variation.Date Hierarchy.Day",
-              "nativeQueryRef": "OrderDate Day"
             }
           ]
         }
